@@ -8,12 +8,12 @@ const addCartItem = (cartItems, productToAdd) => {
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
       cartItem.id === productToAdd.id
-        ? { ...cartItem, quanity: cartItem.quanity + 1 }
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
   }
 
-  return [...cartItems, { ...productToAdd, quanity: 1 }];
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
 export const CartContext = createContext({
@@ -30,7 +30,7 @@ export const CartProvider = ({ children }) => {
   const [totalNumberOfItems, setTotalNumberOfItems] = useState(0);
 
   useEffect(() => {
-      const newCartCount = cartItems.reduce((total, cartItem) => total + cartItem.quanity, 0)
+      const newCartCount = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
       setTotalNumberOfItems(newCartCount);
     }, [cartItems])
   
